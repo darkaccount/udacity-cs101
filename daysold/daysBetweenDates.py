@@ -28,18 +28,21 @@ def dateIsBefore(year1, month1, day1, year2, month2, day2):
     return False
 
 def isLeapYear(year):
+    if year%100:
+        if year%4==0:
+            return True
+    elif year%400==0:
+        return True
     return False
 
 def daysInMonth(year, month):
-    if isLeapYear(year) :
-        if month == 2:
-            return 29
+    if isLeapYear(year) and month == 2:
+        return 29
     elif month == 2:
         return 28
     elif month in (1,3,5,7,8,10,12):
         return 31
-    else:
-        return 30
+    return 30
 
 def daysBetweenDates(year1, month1, day1, year2, month2, day2):
     """Returns the number of days between year1/month1/day1
