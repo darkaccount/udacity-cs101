@@ -8,4 +8,4 @@ def dateIsBefore(year1, month1, day1, year2, month2, day2):
             return True
         if month1 == month2:
             return day1 < day2
-    return False        
+    return False
