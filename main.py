@@ -28,12 +28,17 @@ def get_all_links(page):
     return links                    #return links
 
 
-def crawl_web(seed):
+def crawl_web(seed,max_depth):
     tocrawl = [seed]
     crawled = []
-    while tocrawl:
+    next_depth = []
+    depth = 0
+    while tocrawl and depth <= max_depth:   #there still tocrawl and depth less or equal to max_depth
         page = tocrawl.pop()
         if page not in crawled:
-            union(tocrawl, get_all_links(get_page(page)))
+            union(next_depth, get_all_links(get_page(page)))    #first store links in next_depth
             crawled.append(page)
+        if not tocrawl:                     #if tocrawl is empty,this turn has been crawled
+            tocrawl, next_depth = next_depth, []                #give next_depth to tocrawl and make next_depth empty
+            depth = depth + 1               #update depth
     return crawled
