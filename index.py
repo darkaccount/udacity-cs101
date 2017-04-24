@@ -1,7 +1,8 @@
 def add_to_index(index, keyword, url):
     for entry in index:
         if entry[0] == keyword:
-            entry[1].append(url)
+            if url not in entry[1]:     #url ,keyword only apper once a time
+                entry[1].append(url)
             return
     #not found, add a new entry
     index.append([keyword,[url]])
