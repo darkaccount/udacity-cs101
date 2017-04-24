@@ -1,11 +1,21 @@
+def record_user_click(index, keyword, url):
+    urls = lookup(index, keyword)
+    if urls:
+        for entry in urls:
+            if entry[0] == url:
+                entry[1] = entry[1] + 1
+
+
 def add_to_index(index, keyword, url):
+    # format of index: [[keyword, [[url, count], [url, count],..]],...]
     for entry in index:
         if entry[0] == keyword:
-            if url not in entry[1]:     #url ,keyword only apper once a time
-                entry[1].append(url)
-            return
+            for urls in entry[1]:
+                if urls[0] == url:
+                return
+            entry[1].append([url,0])
     #not found, add a new entry
-    index.append([keyword,[url]])
+    index.append([keyword,[url,count]])
         
 def lookup(index, keyword):
     for entry in index:
